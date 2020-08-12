@@ -1,0 +1,22 @@
+<div class="card-columns animated fadeIn m-5">
+  <div class="card animated fadeIn fast" *ngFor="let item of items" [class.pointer]="type === 'artist'"
+  (click)="type === 'artist' && openArtist(item.id)">
+    <img class="card-img-top" [src]="item.images | noimage">
+    <div class="card-body  p-3">
+      <h5 class="card-title">{{item.name}}</h5>
+      <p *ngIf="item.artists">
+        <a class="badge badge-secondary pointer" *ngFor="let artist of item.artists"
+           (click)="openArtist(artist.id)">{{artist.name}}</a>
+      </p>
+      <p *ngIf="item.genres">
+        <a class="badge badge-secondary pointer" *ngFor="let genre of item.genres" (click)="openGenre(genre, $event)">{{genre}}</a>
+      </p>
+    </div>
+    <div class="card-footer" *ngIf="item.release_date">
+      <small class="text-muted">Release date: {{item.release_date}}</small>
+    </div>
+    <button class="btn btn-block btn-outline-primary">Play</button>
+
+  </div>
+
+</div>
